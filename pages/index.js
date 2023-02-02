@@ -13,6 +13,7 @@ export default function Home() {
     <br/>
     <h1> Bike Share Toronto - info</h1>
     <Bikeshare />
+    <br/>
     <h1> TTC info</h1>
     <Ttc />
     </>

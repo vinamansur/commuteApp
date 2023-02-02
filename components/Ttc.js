@@ -19,14 +19,25 @@ export default function Ttc() {
   const parser = new XMLParser(options);
   if (data) {
     const jsonData = parser.parse(data);
-    console.log(jsonData.body)
+    console.log(jsonData.body);
     const route = jsonData.body.predictions[1].a_routeTitle;
     const stop = jsonData.body.predictions[1].a_stopTitle;
-    const predict = jsonData.body.predictions[1].direction.prediction[0].a_minutes;
+    const predict =
+      jsonData.body.predictions[1].direction.prediction[0].a_minutes;
 
-    return(
-        <p>{route} at {stop} in <strong>{predict} minutes</strong></p>
-    )
+    return (
+      <>
+        <ul>
+          <li>Route: {route} </li>
+          <li>Stop: {stop} </li>
+          <li>
+            Arriving in:{" "}
+            <strong>
+              {predict} {predict == 1 ? "minute" : "minutes"}
+            </strong>
+          </li>
+        </ul>
+      </>
+    );
   }
-
 }
