@@ -1,26 +1,32 @@
 import useSWR from "swr";
-import { XMLParser } from "fast-xml-parser";
+// getting fast-xml-parser package
+const { XMLParser, XMLValidator } = require("fast-xml-parser");
+const options = {
+  ignoreAttributes: false,
+  attributeNamePrefix: "a_",
+};
 
+// define the "fetcher" function.
 const xmlFetcher = (...args) => fetch(...args).then((res) => res.text());
 
 export default function Ttc() {
-  // fetch("https://webservices.umoiq.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=7377").then((resp) => {
-  //     return resp.text()
-  // }).then((data)=> {
-  //     // create an object to be parsed
-  //      const parser = new DOMParser(), xmlDoc = parser.parseFromString(data, "text/xml")
-  //      // getting route name
-  //      console.log(xmlDoc.getElementsByTagName("prediction")[0].getAttribute("minutes"))
-  //         })
-
   const { data } = useSWR(
     "https://webservices.umoiq.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=7377",
     xmlFetcher
   );
 
-  console.log(data)
-//   const parser = new XMLParser()
-//   const xmlDoc = parser.parse(data)
+  // parsing from XML to JSON
+  const parser = new XMLParser(options);
+  if (data) {
+    const jsonData = parser.parse(data);
+    console.log(jsonData.body)
+    const route = jsonData.body.predictions[1].a_routeTitle;
+    const stop = jsonData.body.predictions[1].a_stopTitle;
+    const predict = jsonData.body.predictions[1].direction.prediction[0].a_minutes;
 
-//   console.log(xmlDoc.getElementsByTagName("prediction")[0].getAttribute("minutes"))
+    return(
+        <p>{route} at {stop} in <strong>{predict} minutes</strong></p>
+    )
+  }
+
 }
