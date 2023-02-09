@@ -12,7 +12,8 @@ const xmlFetcher = (...args) => fetch(...args).then((res) => res.text());
 export default function Ttc() {
   const { data } = useSWR(
     "https://webservices.umoiq.com/service/publicXMLFeed?command=predictions&a=ttc&stopId=7377",
-    xmlFetcher
+    xmlFetcher,
+    { refreshInterval: 30000 }
   );
 
   // parsing from XML to JSON

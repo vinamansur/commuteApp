@@ -6,7 +6,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Weather() {
   const { data, error } = useSWR(
     `https://api.openweathermap.org/data/2.5/weather?lat=43.68668&lon=-79.37468&appid=${process.env.NEXT_PUBLIC_API_KEY}&units=metric`,
-    fetcher
+    fetcher, {refreshInterval: 3600000}
   );
 
   return (

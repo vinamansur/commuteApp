@@ -6,7 +6,8 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Bikestats(props) {
   const { data } = useSWR(
     "https://tor.publicbikesystem.net/ube/gbfs/v1/en/station_status",
-    fetcher
+    fetcher,
+    {refreshInterval: 60000}
   );
 
   const station = data?.data.stations.find((st) => st.station_id == props.id);
