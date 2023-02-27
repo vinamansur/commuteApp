@@ -1,2 +1,1 @@
-Interface is still not developed.\
-TTC data not implemented.
+Interface is still not developed. FOcus on retrieving data.
