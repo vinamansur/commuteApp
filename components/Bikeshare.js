@@ -10,7 +10,7 @@ export default function Bikeshare() {
     fetcher
   );
 
-  const station_ids = [7488, 7277, 7359, 7660, 7472];
+  const station_ids = [7488, 7277, 7359, 7660];
   const station_list = [];
 
   station_ids.map((station) =>
