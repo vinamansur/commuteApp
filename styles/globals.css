@@ -19,14 +19,23 @@ a {
   html {
     color-scheme: dark;
   }
+
   body {
     color: white;
     background: black;
   }
+
   .leaflet-container {
     width: 500px;
     height: 500px;
     max-width: 100vw;
   }
-  
+
+  .maintemp {
+    font-size: 3em;
+  }
+
+  .description {
+    text-transform: capitalize
+  }
 }

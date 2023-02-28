@@ -23,7 +23,7 @@ export default function Bikeshare() {
     <>
       {station_list.map((station, index) => (
         <>
-          <h2 key={index}>{station?.name}</h2>
+          <h3 key={index}>{station?.name}</h3>
           <Bikestats id={station?.station_id} />
         </>
       ))}

@@ -5,13 +5,14 @@ import TtcRouteDetails from "../components/TtcRouteDetails";
 export default function Home() {
   return (
     <>
-      <h1> Weather now in Toronto - ON</h1>
+      <h1>CommuteApp</h1>
+      <em>A helper on your daily commute</em>
       <Weather />
       <br />
-      <h1> TTC info</h1>
+      <h2> TTC info</h2>
       <TtcRouteDetails />
       <br />
-      <h1> Bike Share Toronto - info</h1>
+      <h2> Bike Share Toronto - info</h2>
       <Bikeshare />
     </>
   );
