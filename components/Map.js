@@ -2,6 +2,7 @@ import useSWR from "swr";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { icon } from "leaflet";
 import { useEffect, useState } from "react";
+import "leaflet-rotatedmarker";
 
 // getting fast-xml-parser package
 const { XMLParser, XMLValidator } = require("fast-xml-parser");
@@ -56,6 +57,7 @@ export default function Map(props) {
       const longitude = jsonData.body.vehicle.a_lon;
       const vehicleId = jsonData.body.vehicle.a_id;
       const lastUpdate = jsonData.body.vehicle.a_secsSinceReport;
+      const heading = jsonData.body.vehicle.a_heading;
       
       return (
         <MapContainer
@@ -73,7 +75,7 @@ export default function Map(props) {
           <Marker position={[userLat, userLong]} icon={locationIcon}></Marker>
           )}
         {/* Vehicle marker */}
-        <Marker position={[latitude, longitude]} icon={busIcon}>
+        <Marker position={[latitude, longitude]} icon={busIcon} rotationAngle={heading}>
           <Popup>
             Vehicle ID: {vehicleId}
             <br />
