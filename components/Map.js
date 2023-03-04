@@ -14,7 +14,7 @@ const options = {
 // creating customized icons
 const busIcon = icon({
   iconUrl: "/arrow.png",
-  iconSize: [32, 32],
+  iconSize: [24, 24],
 });
 const locationIcon = icon({
   iconUrl: "/location.png",
