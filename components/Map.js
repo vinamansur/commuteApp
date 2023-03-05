@@ -39,7 +39,7 @@ export default function Map(props) {
         setUserLong(coords.longitude);
       });
     }
-  }, []);
+  }, [navigator.geolocation]);
 
   // fetching vehicle location data
   const { data } = useSWR(

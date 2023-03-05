@@ -52,7 +52,7 @@ export default function Weather() {
               </td>
               <td>
                 <img width="130px"
-                  src={`http://openweathermap.org/img/wn/${data?.weather[0].icon}@2x.png`}
+                  src={`https://openweathermap.org/img/wn/${data?.weather[0].icon}@2x.png`}
                 ></img>
               </td>
             </tr>
