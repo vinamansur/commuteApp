@@ -34,7 +34,7 @@ export default function TtcRouteDetails() {
       
       return (
         <>
-        /* <RouteMap /> */
+        <RouteMap />
         <ul>
           <li>Route: {route} </li>
           <li>Stop: {stop} </li>
