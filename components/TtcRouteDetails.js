@@ -26,15 +26,15 @@ export default function TtcRouteDetails() {
   if (data) {
     const jsonData = parser.parse(data);
     console.log(jsonData.body);
-    if(jsonData.body.predictions[1]){
-      const route = jsonData.body.predictions[1].a_routeTitle;
-      const stop = jsonData.body.predictions[1].a_stopTitle;
+    if(jsonData.body.predictions){
+      const route = jsonData.body.predictions.a_routeTitle;
+      const stop = jsonData.body.predictions.a_stopTitle;
       const predict =
-      jsonData.body.predictions[1].direction.prediction[0].a_minutes;
+      jsonData.body.predictions.direction.prediction[0].a_minutes;
       
       return (
         <>
-        {/* <RouteMap /> */}
+        /* <RouteMap /> */
         <ul>
           <li>Route: {route} </li>
           <li>Stop: {stop} </li>
