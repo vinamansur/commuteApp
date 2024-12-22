@@ -26,11 +26,13 @@ export default function TtcRouteDetails() {
   if (data) {
     const jsonData = parser.parse(data);
     console.log(jsonData.body);
-    if(jsonData.body.predictions){
+    if(jsonData.body.predictions.hasOwnProperty("direction")){
       const route = jsonData.body.predictions.a_routeTitle;
       const stop = jsonData.body.predictions.a_stopTitle;
       const predict =
-      jsonData.body.predictions.direction.prediction[0].a_minutes;
+      Array.isArray(jsonData.body.predictions.direction.prediction)?
+      jsonData.body.predictions.direction.prediction[0].a_minutes:
+      jsonData.body.predictions.direction.prediction.a_minutes;
       
       return (
         <>
@@ -47,6 +49,6 @@ export default function TtcRouteDetails() {
         </ul>
       </>
     );
-  }
+  } else return('No predictions available right now.')
   }
 }

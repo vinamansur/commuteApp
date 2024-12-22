@@ -9,7 +9,7 @@ export default function Home() {
       <em>A helper on your daily commute</em>
       <Weather />
       <br />
-      <h2> TTC info</h2>
+      <h2> TTC info </h2>
       <TtcRouteDetails />
       <br />
       <h2> Bike Share Toronto - info</h2>
