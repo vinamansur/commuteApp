@@ -52,6 +52,12 @@ export default function Map(props) {
   //parsing from XML to JSON
   const parser = new XMLParser(options);
 
+  useEffect(() => {
+    if (markerRef.current) {
+      markerRef.current.setRotationAngle(heading);
+    }
+  }, [heading]);
+
   if (data) {
     const jsonData = parser.parse(data);
     if (jsonData.body.vehicle) {
@@ -61,11 +67,6 @@ export default function Map(props) {
       const lastUpdate = jsonData.body.vehicle.a_secsSinceReport;
       const heading = jsonData.body.vehicle.a_heading;
 
-      useEffect(() => {
-        if (markerRef.current) {
-          markerRef.current.setRotationAngle(heading);
-        }
-      }, [heading]);
 
       return (
         <MapContainer
