@@ -30,7 +30,7 @@ export default function Map(props) {
   }
   const [userLat, setUserLat] = useState();
   const [userLong, setUserLong] = useState();
-  const markerRef = useRef();
+  const markerRef = useRef(null);
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -42,13 +42,6 @@ export default function Map(props) {
     }
   }, [navigator.geolocation]);
 
-  useEffect(() => {
-    if (markerRef.current && vehicleData) {
-      const marker = markerRef.current;
-      marker.setRotationAngle(vehicleData.heading); // <-- This triggers the rotation update
-    }
-  }, [vehicleData?.heading]);
-
   // fetching vehicle location data
   const { data } = useSWR(
     "https://webservices.umoiq.com/service/publicXMLFeed?command=vehicleLocations&a=ttc&r=82&t=0",
@@ -58,6 +51,7 @@ export default function Map(props) {
 
   //parsing from XML to JSON
   const parser = new XMLParser(options);
+
   if (data) {
     const jsonData = parser.parse(data);
     if (jsonData.body.vehicle) {
@@ -66,6 +60,12 @@ export default function Map(props) {
       const vehicleId = jsonData.body.vehicle.a_id;
       const lastUpdate = jsonData.body.vehicle.a_secsSinceReport;
       const heading = jsonData.body.vehicle.a_heading;
+
+      useEffect(() => {
+        if (markerRef.current) {
+          markerRef.current.setRotationAngle(heading);
+        }
+      }, [heading]);
 
       return (
         <MapContainer
