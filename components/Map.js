@@ -55,12 +55,15 @@ export default function Map(props) {
     }
   }
 
-  // Always run this effect, even if heading is undefined
   useEffect(() => {
-    if (markerRef.current && heading !== undefined) {
-      markerRef.current.setRotationAngle(heading);
+    if (markerRef.current && latitude && longitude && heading !== undefined) {
+      const marker = markerRef.current;
+
+      // 🔄 Update position and heading smoothly
+      marker.setLatLng([latitude, longitude]); // Move to new position
+      marker.setRotationAngle(heading); // Rotate to new heading
     }
-  }, [heading]);
+  }, [latitude, longitude, heading]);
 
   if (!latitude || !longitude) return null;
 
