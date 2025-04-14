@@ -69,7 +69,7 @@ export default function Map(props) {
 
   return (
     <MapContainer
-      style={{ height: "100vh", width: "100%" }}  
+      style={{ width: "100%", aspectRatio: "1/1" }}  
       center={[43.68192607423363, -79.38021893174823]}
       zoom={15}
       scrollWheelZoom={true}
